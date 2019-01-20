@@ -8,6 +8,7 @@ module BridgeCh2DE
     using Polar.Channels
     using Polar.DensityEvolution
     using Polar.CommunicationsUtils
+    using Polar.Utils
 
 
     function channeloutputdistribution(ch::BiAWGNChannel)
@@ -19,6 +20,12 @@ module BridgeCh2DE
 
     function channeloutputdistribution(ch::Tch, v::Type{PostPPValue{Tllr,f_map}}) where {Tch<:AbstractCommunicationsChannel,Tllr,f_map}
         return DiscreteDEDistribution{PostPPValue{Tllr,f_map}}(Dict( PostPPValue{Tllr,f_map}(val) => prob for (val, prob) in channeloutputdistribution(ch, Tllr) ))
+    end
+
+    function channeloutputdistribution(ch::BSChannel)
+        @assert !(ch.p ≈ 0.0)
+        Δ = ln((1-ch.p)/ch.p)
+        return DiscreteDEDistribution{FloatValue}(Dict( FloatValue(+Δ) => (1-ch.p), FloatValue(-Δ) => ch.p ))
     end
 
 end

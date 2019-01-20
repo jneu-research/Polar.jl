@@ -243,7 +243,8 @@ module SimulationUtils
                         tic!(result, :MLError)
                     elseif pm_opt == pm_ml
                         # the list does contain the true data, don't add it
-                        if rand() > 1. / (count(list_pms .== pm_ml) + 0)
+                        # if rand() > 1. / (count(list_pms .== pm_ml) + 0)
+                        if rand() > 1. / (count(x -> x == pm_ml, list_pms) + 0)
                             tic!(result, :MLError)
                         end
                     end
@@ -258,7 +259,8 @@ module SimulationUtils
                         tic!(result, :MLError)
                     elseif pm_opt == pm_ml
                         # the list does not contain the true data, add it
-                        if rand() > 1. / (count(list_pms .== pm_ml) + 1)
+                        # if rand() > 1. / (count(list_pms .== pm_ml) + 1)
+                        if rand() > 1. / (count(x -> x == pm_ml, list_pms) + 1)
                             tic!(result, :MLError)
                         end
                     end

@@ -3,7 +3,7 @@ __precompile__()
 module Channels
 
     using SpecialFunctions
-    using Polar.GF2n: GF2Element, toint
+    using Polar.GF2n: GF2Element, toint, GF2_0, GF2_1, ⊻
     using Polar.CommunicationsUtils
 
 
@@ -32,6 +32,7 @@ module Channels
     export AbstractCommunicationsChannel
     export AWGNChannel, BiAWGNChannel
     export BEChannel
+    export BSChannel
     export intype, outtype, get_w, get_f, get_llr
 
     abstract type AbstractCommunicationsChannel end
@@ -125,6 +126,60 @@ module Channels
             end
         end
         return llr
+    end
+
+
+    struct BSChannel <: AbstractCommunicationsChannel
+        p::Float64
+
+        function BSChannel(p::Float64)
+            @assert 0.0 <= p <= 0.5
+            return new(p)
+        end
+    end
+    intype(::Type{BSChannel}) = BinaryAlphabet
+    outtype(::Type{BSChannel}) = BinaryAlphabet
+    function get_w(ch::BSChannel, x::BinaryAlphabet)
+        function w(y::BinaryAlphabet)::Float64
+            if x == y
+                return 1-ch.p
+            else # x != y
+                return ch.p
+            end
+        end
+        return w
+    end
+    function get_f(ch::BSChannel)
+        function f(x::BinaryAlphabet)::BinaryAlphabet
+            if rand() <= ch.p
+                return x ⊻ GF2_1
+            else
+                return x
+            end
+        end
+        return f
+    end
+    function get_llr(ch::BSChannel)
+        if ch.p ≈ 0.0
+            function llr1(y::BinaryAlphabet)
+                if y == GF2_0
+                    return +Inf
+                else # y == GF2_1
+                    return -Inf
+                end
+            end
+            return llr1
+        else
+            Δ = ln((1-ch.p)/ch.p)
+            function llr2(y::BinaryAlphabet)
+                if y == GF2_0
+                    return +Δ
+                else # y == GF2_1
+                    return -Δ
+                end
+            end
+            return llr2
+        end
     end
 
 end
