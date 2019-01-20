@@ -7,12 +7,13 @@ This package is intended for Julia v1.0 and above.
 
 ## Usage
 
-For details on how to use Polar.jl, please refer to [Polar.jl-examples](https://github.com/jneu-research/Polar.jl).
+For details on how to use Polar.jl, please refer to [Polar.jl-examples](https://github.com/jneu-research/Polar.jl-examples).
 
 
 ## Support
 
 The code is provided as is, without any warranties or guarantees (neither implicit nor explicit).
+Use at your own risk!
 
 
 ## Citation
@@ -20,7 +21,7 @@ The code is provided as is, without any warranties or guarantees (neither implic
 Please cite the use of any material in this repository as:
 * J. Neu, ''Polar.jl: Julia implementation of polar coding'', URL: https://jneu.net/Polar.jl
   ```
-  @MISC{Polar.jl,
+  @MISC{Polar_jl,
     author = {Neu, Joachim},
     title = {{Polar.jl}: {Julia} implementation of polar coding},
     howpublished = {\url{https://jneu.net/Polar.jl}},
