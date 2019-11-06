@@ -1,13 +1,13 @@
 # Polar.jl
 
-This repository contains a [Julia](https://julialang.org/) implementation of various aspects of [polar codes](https://en.wikipedia.org/wiki/Polar_code_(coding_theory)), in particular encoding, decoding and code design for various scenarios.
+This repository contains [Polar.jl](https://github.com/jneu-research/Polar.jl), a [Julia](https://julialang.org/) implementation of various aspects of [polar codes](https://en.wikipedia.org/wiki/Polar_code_(coding_theory)), in particular encoding, decoding and code design for various scenarios.
 
 This package is intended for Julia v1.0 and above.
 
 
 ## Usage
 
-For details on how to use Polar.jl, please refer to [Polar.jl-examples](https://github.com/jneu-research/Polar.jl-examples).
+For details and examples on how to use [Polar.jl](https://github.com/jneu-research/Polar.jl), please refer to [Polar.jl-examples](https://github.com/jneu-research/Polar.jl-examples) and [Polar.jl-ternaryquantization-examples](https://github.com/jneu-research/Polar.jl-ternaryquantization-examples).
 
 
 ## Support
@@ -18,7 +18,7 @@ Use at your own risk!
 
 ## Citation
 
-Please cite the use of any material in this repository as:
+Please cite the use of [Polar.jl](https://github.com/jneu-research/Polar.jl) as:
 * J. Neu, ''Polar.jl: Julia implementation of polar coding'', URL: https://jneu.net/Polar.jl
   ```
   @MISC{Polar_jl,
